@@ -1,0 +1,38 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int solve(vector<int>&ar, int number){
+    int i,j,last, k=0;
+    last = ar.size()-1;
+    for(i=0; i<ar.size();i++){
+        if(i>last) break;
+        if(ar[i]==number){
+            k++;
+            while(ar[last]==number & last>i){
+                last--;
+            }
+            if(ar[last]!=number){
+                swap(ar[last], ar[i]);
+            }
+        }
+    }
+    return ar.size()-k;
+}
+
+int main(){
+    vector<int>storage;
+    int arraySize; 
+    cin >> arraySize;
+    for(int i = 0 ; i < arraySize; i++){
+    	int x;
+    	cin >> x;
+    	storage.push_back(x);
+    }
+    int number;
+    cin >> number;
+    int k =solve(storage, number);
+    cout<<"k="<<k<<" num=";
+    for(int i=0;i<storage.size();i++){
+        cout<<storage[i]<<" ";
+    }
+}
